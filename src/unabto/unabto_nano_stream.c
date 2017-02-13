@@ -190,17 +190,9 @@ void nano_stream_init_state(unabto_stream * stream, const struct nabto_win_info*
 /******************************************************************************/
  
 
-#if UNABTO_PLATFORM_PIC18
-#pragma udata big_mem
-#endif
-
 static NABTO_THREAD_LOCAL_STORAGE struct nabto_stream_s nano_stream__[NABTO_MEMORY_STREAM_MAX_STREAMS];  /**< a pool of streams */
 static NABTO_THREAD_LOCAL_STORAGE uint8_t r_buffer_data[NABTO_MEMORY_STREAM_MAX_STREAMS * NABTO_MEMORY_STREAM_RECEIVE_SEGMENT_SIZE * NABTO_MEMORY_STREAM_RECEIVE_WINDOW_SIZE];
 static NABTO_THREAD_LOCAL_STORAGE uint8_t x_buffer_data[NABTO_MEMORY_STREAM_MAX_STREAMS * NABTO_MEMORY_STREAM_SEND_SEGMENT_SIZE * NABTO_MEMORY_STREAM_SEND_WINDOW_SIZE];
-
-#if UNABTO_PLATFORM_PIC18
-#pragma udata
-#endif
 
 static bool nano_stream_is_ack_on_fin(struct nano_stream_state* tcb, struct nabto_win_info* win);
 static bool nano_stream_handle_fin(struct nano_stream_state* tcb, struct nabto_win_info* win);
